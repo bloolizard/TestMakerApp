@@ -2,43 +2,47 @@
 <html>
   <head>
     <title>Welcome to the Test Maker Application</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/css/style.css' />
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
   <header>
       <nav>
           <ul>
-              <li class="brand">Let's Make a Test</li>
-                <li class="right">Start a New Test</li>
-                <li class="right">My Tests</li>
+              <li data-href="/welcome" id="welcome_trigger" class="brand">Let's Make a Test</li>
+                <li class="right"><a id="new_test_trigger" data-href="/new_test">Start a New Test</a></li>
+                <li class="right"><a id="my_test_trigger" data-href="/my_test">My Tests</a></li>
           </ul>
       </nav>
   </header>
-    <div id="welcome_container" class="well">
-        <div>
-            <h1>Let's Make a Test</h1>
-            <button>My Tests</button>
-            <button>Start a New Test</button>
-        </div>
+  <section class="container">
+      <div id="welcome_container" class="well">
+          <div>
+              <h1>Let's Make a Test</h1>
+              <button data-href="/my_test" id="my_test_btn">My Tests</button>
+              <button data-href="/new_test" id="new_test_btn">Start a New Test</button>
+          </div>
 
 
 
-    </div>
+      </div>
 
-    <div id="new_test_container" class="well">
-        <div>
-            New Tests
-        </div>
+      <div id="new_test_container" class="well">
+          <div>
+              New Tests
+          </div>
 
-    </div>
+      </div>
 
-    <div id="my_test_container" class="well">
-        <div>
-            My Tests
-        </div>
+      <div id="my_test_container" class="well">
+          <div>
+              My Tests
+          </div>
 
-    </div>
+      </div>
 
+  </section>
+    <footer>&copy; Edwin Villanueva</footer>
+  <script src="/js/index.js"></script>
   </body>
 </html>
