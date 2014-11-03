@@ -45,6 +45,10 @@ li.right {
 
 div#welcome_container, div#new_test_container,
 div#my_test_container {
-    margin: 3em;
+    margin: 3em 2em;
     padding: 0.5em;
+}
+
+.well > div {
+    text-align: center;
 }
