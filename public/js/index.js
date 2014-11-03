@@ -1,3 +1,14 @@
+var utils = {
+    createElement: function(type, className, innerHTML, parent){
+        var element = document.createElement(type);
+        if (className != ''){element.className = className;}
+        element.innerHTML = innerHTML;
+        if (typeof parent !== 'undefined'){parent.appendChild(element);}
+        return element;
+    }
+};
+
+
 function Router(){
     this.views = {
         '/welcome': {
@@ -19,6 +30,12 @@ function Router(){
             element: document.getElementById('my_test_container'),
             init: [],
             unload: []
+        },
+        '/create_question':{
+            trigger: [document.getElementById('create_question_trigger')],
+            element: document.getElementById('create_question_container'),
+            init: [],
+            unload: []
         }
     };
 
@@ -29,6 +46,12 @@ function Router(){
     this.show = function(path){
         this.path = path;
         console.log(path);
+
+        for (var view in self.views){
+            // hide all of the other views
+            self.views[view].element.style.display = 'none';
+        }
+        //show the new view
         self.views[path].element.style.display = 'block';
 
     };

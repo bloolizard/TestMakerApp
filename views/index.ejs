@@ -29,7 +29,16 @@
 
       <div id="new_test_container" class="well">
           <div>
-              New Tests
+              <div class="test_name">
+                  Enter a Test Name:
+                  <p>
+                      <input name="name" type="text" placeholder="Test Name"/>
+                        <button data-href="/create_question" id="create_question_trigger">Create Test</button>
+                  </p>
+              </div>
+
+
+
           </div>
 
       </div>
@@ -37,6 +46,42 @@
       <div id="my_test_container" class="well">
           <div>
               My Tests
+          </div>
+
+      </div>
+
+      <div id="create_question_container" class="well">
+          <div class="question_box">
+              Enter a Question:
+              <p>
+                  <input name="question" type="text" placeholder="Question"/>
+              </p>
+          </div>
+
+          Answers: (Write Answers: Select Correct Answer)
+          <div class="answer_box">
+              <p>
+                  <input name="answers" id="answer_1" type="radio"/>
+                  <input name="opt1" type="text" placeholder="Answer 1"/>
+              </p>
+              <p>
+                  <input name="answers" id="answer_2" type="radio"/>
+                  <input name="opt2" type="text" placeholder="Answer 2"/>
+              </p>
+              <p>
+                  <input name="answers" id="answer_3" type="radio"/>
+                  <input name="opt3" type="text" placeholder="Answer 3"/>
+              </p>
+              <p>
+                  <input name="answers" id="answer_4" type="radio"/>
+                  <input name="opt4" type="text" placeholder="Answer 4"/>
+              </p>
+          </div>
+          <div class="answer_toolbox">
+              <button disabled>Previous</button>
+              <button disabled>Next</button>
+              <button>Add Question</button>
+              <button>Finish</button>
           </div>
 
       </div>

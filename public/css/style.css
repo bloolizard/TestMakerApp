@@ -56,8 +56,8 @@ li.right {
 }
 
 div#welcome_container, div#new_test_container,
-div#my_test_container {
-    margin: 3em 2em;
+div#my_test_container, div#create_question_container {
+    margin: 3em 1em;
     padding: 0.5em;
 }
 
