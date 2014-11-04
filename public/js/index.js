@@ -3,7 +3,7 @@ var utils = {
         var element = document.createElement(type);
         if (className != ''){element.className = className;}
         element.innerHTML = innerHTML;
-        if (typeof parent !== 'undefined'){parent.appendChild(element);}
+        if (typeof parent !== 'undefined' || typeof parent !== null ){parent.appendChild(element);}
         return element;
     }
 };
@@ -46,6 +46,14 @@ function updateTest(form_object, callback){
         }
     });
     xhr.send(JSON.stringify(form_object));
+}
+
+function displayTests(title, id){
+    var my_tests = document.getElementById('my_tests');
+    var p = utils.createElement('p', '','', my_tests);
+    var a = utils.createElement('a','',title, p);
+    a.setAttribute('data-id', id);
+    a.href = "#";
 }
 
 
@@ -207,11 +215,17 @@ router.views['/my_test'].init.push(function(){
     console.log('My Test Opened');
     //get test objects from server
     getAjax(function(data){
-       console.log(data);
-    });
-    //display created tests
+       var _data = JSON.parse(data);
+       console.log(_data);
 
-    //randomize test order
+       for (var test in _data){
+            //display created tests
+            displayTests(_data[test].test_name,_data[test]._id );
+       }
+        //randomize test order
+    });
+
+
 
 
 });
