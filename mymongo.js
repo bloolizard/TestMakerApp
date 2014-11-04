@@ -30,8 +30,17 @@ router.post('/', function(req, res){
     });
 });
 
-router.put('/', function(req, res){
+router.put('/:id', function(req, res){
     console.log('Put was called');
+    console.log(req.params.id);
+    TestModel.findById(req.params.id, function(err, test){
+        test.question = 'awesome';
+        test.save(function(err, results){
+            console.log(results);
+        });
+    });
 });
+
+
 
 module.exports = router;

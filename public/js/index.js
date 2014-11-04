@@ -26,8 +26,10 @@ function createTest(callback){
 }
 
 function updateTest(callback){
+    var test_id = (document.getElementById('test_name')).getAttribute('data-id');
+    console.log(test_id);
     var xhr = new XMLHttpRequest();
-    xhr.open('PUT','/tests');
+    xhr.open('PUT','/tests/' + test_id);
     xhr.addEventListener('readystatechange', function(){
         if (xhr.status === 200 && xhr.readyState === 4){
             callback(xhr.responseText);
@@ -147,3 +149,10 @@ function Router(){
 }
 
 var router = new Router();
+
+//adding a question
+document.getElementById('add_question').addEventListener('click', function() {
+    updateTest(function(){
+
+    });
+});
