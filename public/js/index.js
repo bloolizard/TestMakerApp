@@ -9,31 +9,55 @@ var utils = {
 };
 
 function createAnswer(answer){
-
+//    var p = document.createElement('p');
 }
 
-//draws a question the form
+//draws a question the form :todo
 function createQuestion(question){
     var container = document.createElement('div');
     container.className = 'question';
     utils.createElement('p','',question.question,container);
     var answers = document.createElement('div');
 
-    utils.createElement('p','',question.answer_1[1], answers);
-    var opt1 = utils.createElement('input', '', '', answers);
+    var a1 = document.createElement('p');
+    var opt1 = utils.createElement('input', '', '', a1);
     opt1.setAttribute("type", "radio");
+    var a1_text = document.createTextNode(question.answer_1[1]);
+    a1.appendChild(a1_text);
+    answers.appendChild(a1);
 
-    utils.createElement('p','',question.answer_2[1], answers);
-    var opt2 = utils.createElement('input', '', '', answers);
+    var a2 = document.createElement('p');
+    var opt2 = utils.createElement('input', '', '', a2);
     opt2.setAttribute("type", "radio");
+    var a2_text = document.createTextNode(question.answer_2[1]);
+    a2.appendChild(a2_text);
+    answers.appendChild(a2);
 
-    utils.createElement('p','',question.answer_3[1], answers);
-    var opt3 = utils.createElement('input', '', '', answers);
+    var a3 = document.createElement('p');
+    var opt3 = utils.createElement('input', '', '', a3);
     opt3.setAttribute("type", "radio");
+    var a3_text = document.createTextNode(question.answer_3[1]);
+    a3.appendChild(a3_text);
+    answers.appendChild(a3);
 
-    utils.createElement('p','',question.answer_4[1], answers);
-    var opt4 = utils.createElement('input', '', '', answers);
+    var a4 = document.createElement('p');
+    var opt4 = utils.createElement('input', '', '', a4);
     opt4.setAttribute("type", "radio");
+    var a4_text = document.createTextNode(question.answer_4[1]);
+    a4.appendChild(a4_text);
+    answers.appendChild(a4);
+
+//    utils.createElement('p','',question.answer_2[1], answers);
+//    var opt2 = utils.createElement('input', '', '', answers);
+//    opt2.setAttribute("type", "radio");
+//
+//    utils.createElement('p','',question.answer_3[1], answers);
+//    var opt3 = utils.createElement('input', '', '', answers);
+//    opt3.setAttribute("type", "radio");
+//
+//    utils.createElement('p','',question.answer_4[1], answers);
+//    var opt4 = utils.createElement('input', '', '', answers);
+//    opt4.setAttribute("type", "radio");
 
     container.appendChild(answers);
     return container;
