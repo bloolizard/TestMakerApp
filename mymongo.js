@@ -13,7 +13,16 @@ var TestModel = mongoose.model('Test', {
 
 
 router.get('/', function(req, res){
-
+    TestModel.find(function(err, results){
+        if (err){
+            console.log(err);
+            res.status(500).json({details: results});
+        }
+        else {
+            console.log(results);
+            res.status(200).json(results);
+        }
+    });
 });
 
 router.post('/', function(req, res){

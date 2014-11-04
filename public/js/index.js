@@ -8,6 +8,16 @@ var utils = {
     }
 };
 
+function getAjax(callback){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/tests');
+    xhr.addEventListener('readystatechange', function(){
+        if (xhr.status === 200 && xhr.readyState === 4){
+            callback(xhr.responseText);
+        }
+    });
+    xhr.send();
+}
 
 function createTest(callback){
     var xhr = new XMLHttpRequest();
@@ -60,7 +70,7 @@ function Router(){
             element: document.getElementById('my_test_container'),
             init: [],
             unload: []
-        },
+        }
 
     };
 
@@ -77,21 +87,35 @@ function Router(){
 
     var self = this;
 
+
     this.show = function(path, list){
         this.path = path;
         console.log(path);
 
         if (list == 'views'){
             for (var view in self.views){
+                self.views[view].unload.forEach(function(fn){
+                    fn();
+                });
+
                 // hide all of the other views
                 self.views[view].element.style.display = 'none';
 
             }
+
+            //hide question box if its showing
+            self.other_views['/create_question'].element.style.display = 'none';
+
+
             //show the new view
             self.views[path].element.style.display = 'block';
         }
         else if (list == 'other_views') {
             for (var view in self.other_views){
+                self.other_views[view].unload.forEach(function(fn){
+                    fn();
+                });
+
                 // hide all of the other views
                 self.other_views[view].element.style.display = 'none';
             }
@@ -113,6 +137,11 @@ function Router(){
                 e.preventDefault();
                 var path = trigger.dataset.href;
                 self.show(path, 'views');
+
+                //initialize functions
+                self.views[path].init.forEach(function(fn){
+                    fn();
+                });
 
             });
         });
@@ -169,4 +198,20 @@ document.getElementById('add_question').addEventListener('click', function() {
         document.forms.create_question_form.reset();
 
     });
+});
+
+router.views['/new_test'].unload.push(function(){
+});
+
+router.views['/my_test'].init.push(function(){
+    console.log('My Test Opened');
+    //get test objects from server
+    getAjax(function(data){
+       console.log(data);
+    });
+    //display created tests
+
+    //randomize test order
+
+
 });
