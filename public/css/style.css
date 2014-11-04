@@ -65,6 +65,10 @@ div#my_test_container, div#create_question_container {
     text-align: center;
 }
 
+.well > form {
+    text-align: center;
+}
+
 section.container {
     height: 100%;
 }

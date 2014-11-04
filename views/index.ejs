@@ -51,6 +51,8 @@
       </div>
 
       <div id="create_question_container" class="well">
+          <form name="create_question_form">
+
           <div class="question_box">
               Enter a Question:
               <p>
@@ -62,27 +64,30 @@
           <div class="answer_box">
               <p>
                   <input name="answers" id="answer_1" type="radio"/>
-                  <input name="opt1" type="text" placeholder="Answer 1"/>
+                  <input name="opt0" type="text" placeholder="Answer 1"/>
               </p>
               <p>
                   <input name="answers" id="answer_2" type="radio"/>
-                  <input name="opt2" type="text" placeholder="Answer 2"/>
+                  <input name="opt1" type="text" placeholder="Answer 2"/>
               </p>
               <p>
                   <input name="answers" id="answer_3" type="radio"/>
-                  <input name="opt3" type="text" placeholder="Answer 3"/>
+                  <input name="opt2" type="text" placeholder="Answer 3"/>
               </p>
               <p>
                   <input name="answers" id="answer_4" type="radio"/>
-                  <input name="opt4" type="text" placeholder="Answer 4"/>
+                  <input name="opt3" type="text" placeholder="Answer 4"/>
               </p>
           </div>
+          </form>
+
           <div class="answer_toolbox">
               <button disabled>Previous</button>
               <button disabled>Next</button>
               <button id="add_question">Add Question</button>
               <button>Finish</button>
           </div>
+
 
       </div>
 

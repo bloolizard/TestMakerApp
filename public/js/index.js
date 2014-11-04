@@ -25,17 +25,17 @@ function createTest(callback){
 
 }
 
-function updateTest(callback){
+function updateTest(form_object, callback){
     var test_id = (document.getElementById('test_name')).getAttribute('data-id');
-    console.log(test_id);
     var xhr = new XMLHttpRequest();
     xhr.open('PUT','/tests/' + test_id);
+    xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.addEventListener('readystatechange', function(){
         if (xhr.status === 200 && xhr.readyState === 4){
             callback(xhr.responseText);
         }
     });
-    xhr.send();
+    xhr.send(JSON.stringify(form_object));
 }
 
 
@@ -150,9 +150,23 @@ function Router(){
 
 var router = new Router();
 
+//get question object from form
+function getQuestionObject(){
+    var form = document.forms.create_question_form;
+    return {
+        question: form.question.value,
+        answer_1: [form.answers[0].checked, form.opt0.value],
+        answer_2: [form.answers[1].checked, form.opt1.value],
+        answer_3: [form.answers[2].checked, form.opt2.value],
+        answer_4: [form.answers[3].checked, form.opt3.value]
+    }
+}
+
 //adding a question
 document.getElementById('add_question').addEventListener('click', function() {
-    updateTest(function(){
+    updateTest(getQuestionObject(), function(){
+        //clear form on successful send
+        document.forms.create_question_form.reset();
 
     });
 });

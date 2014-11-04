@@ -8,8 +8,7 @@ console.log('Connection to MongoDB');
 
 var TestModel = mongoose.model('Test', {
     test_name: String,
-    question: String,
-    answer: []
+    questions: []
 });
 
 
@@ -31,14 +30,19 @@ router.post('/', function(req, res){
 });
 
 router.put('/:id', function(req, res){
-    console.log('Put was called');
-    console.log(req.params.id);
-    TestModel.findById(req.params.id, function(err, test){
-        test.question = 'awesome';
-        test.save(function(err, results){
-            console.log(results);
+    var question = req.body;
+    TestModel.where({ _id: req.params.id }).update({
+            $push: {questions: question}},
+        function(err, results){
+            if (err){
+                console.log(err);
+                res.status(500).json({details: results});
+            }
+            else {
+                console.log(results);
+                res.status(200).json({details: results});
+            }
         });
-    });
 });
 
 
