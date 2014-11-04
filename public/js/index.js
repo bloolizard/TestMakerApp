@@ -8,6 +8,40 @@ var utils = {
     }
 };
 
+function createAnswer(answer){
+
+}
+
+//draws a question the form
+function createQuestion(question){
+    var container = document.createElement('div');
+    container.className = 'question';
+    utils.createElement('p','',question.question,container);
+    var answers = document.createElement('div');
+
+    utils.createElement('p','',question.answer_1[1], answers);
+    var opt1 = utils.createElement('input', '', '', answers);
+    opt1.setAttribute("type", "radio");
+
+    utils.createElement('p','',question.answer_2[1], answers);
+    var opt2 = utils.createElement('input', '', '', answers);
+    opt2.setAttribute("type", "radio");
+
+    utils.createElement('p','',question.answer_3[1], answers);
+    var opt3 = utils.createElement('input', '', '', answers);
+    opt3.setAttribute("type", "radio");
+
+    utils.createElement('p','',question.answer_4[1], answers);
+    var opt4 = utils.createElement('input', '', '', answers);
+    opt4.setAttribute("type", "radio");
+
+    container.appendChild(answers);
+    return container;
+
+
+
+}
+
 function getAjax(callback){
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/tests');
@@ -54,7 +88,48 @@ function displayTests(title, id){
     var a = utils.createElement('a','',title, p);
     a.setAttribute('data-id', id);
     a.href = "#";
+    a.addEventListener('click', function(e){
+        e.preventDefault();
+        getTest(id, function(data){
+            createTestView(JSON.parse(data));
+        });
+    })
 }
+
+// shows the test
+function getTest(id, callback){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/tests/'+ id);
+    xhr.addEventListener('readystatechange', function(){
+        if (xhr.status === 200 && xhr.readyState === 4){
+            callback(xhr.responseText);
+        }
+    });
+    xhr.send();
+}
+
+// create a test for user
+function createTestView(test_object){
+    console.log(test_object);
+
+    // hide my tests
+    router.views['/my_test'].element.style.display = 'none';
+
+    router.show('/test_view', 'other_views');
+
+    //append title to test view
+    var test_view = document.getElementById('test_view');
+    var test_title = utils.createElement('div','test_title',
+        test_object[0].test_name, test_view);
+
+    test_object[0].questions.forEach(function(question){
+
+        // create an element for each question
+        test_view.appendChild(createQuestion(question));
+
+    });
+}
+
 
 
 function Router(){
@@ -88,6 +163,12 @@ function Router(){
         element: document.getElementById('create_question_container'),
         init: [],
         unload: []
+        },
+        '/test_view':{
+            trigger:[],
+            element: document.getElementById('test_view'),
+            init: [],
+            unload: []
         }
     };
 
@@ -108,6 +189,8 @@ function Router(){
 
                 // hide all of the other views
                 self.views[view].element.style.display = 'none';
+                self.other_views['/test_view'].element.style.display = 'none';
+
 
             }
 
@@ -225,7 +308,8 @@ router.views['/my_test'].init.push(function(){
         //randomize test order
     });
 
+});
 
-
-
+router.views['/my_test'].unload.push(function(){
+    (document.getElementById('my_tests')).innerHTML = '';
 });

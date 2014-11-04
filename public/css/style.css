@@ -56,7 +56,7 @@ li.right {
 }
 
 div#welcome_container, div#new_test_container,
-div#my_test_container, div#create_question_container {
+div#my_test_container, div#create_question_container, div#test_view {
     margin: 3em 1em;
     padding: 0.5em;
 }
@@ -78,4 +78,26 @@ footer {
     width: 100%;
     bottom: 0;
     text-align: center;
+}
+
+.test_title {
+    font-weight: 600;
+}
+
+div.question {
+    border: 1px solid black;
+}
+div.question > p {
+    font-style: italic;
+    font-weight: 400;
+}
+
+div#test_view {
+    position: relative;
+}
+
+div.toolbox {
+    bottom: 0.5px;
+    right: 0;
+    position: absolute;
 }
