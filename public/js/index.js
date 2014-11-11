@@ -16,54 +16,56 @@ var currentTest = {
 
 function createAnswer(answer){
 //    var p = document.createElement('p');
+//    var a1 = document.createElement('p');
+//    var opt1 = utils.createElement('input', '', '', a1);
+//    opt1.id = 'answer_1';
+//    opt1.setAttribute("type", "radio");
+//    opt1.setAttribute("name", "answer_for" + question.question);
+//    var a1_label = utils.createElement('label','',question.answer_1[1],a1);
+//    a1_label.setAttribute('for', opt1.id);
+//    answers.appendChild(a1);
 }
 
 //draws a question the form :todo
 function createQuestion(question){
     var container = document.createElement('div');
     container.className = 'question';
-    utils.createElement('p','',question.question,container);
+    utils.createElement('h4','',question.question,container);
     var answers = document.createElement('div');
+
 
     var a1 = document.createElement('p');
     var opt1 = utils.createElement('input', '', '', a1);
+    opt1.id = 'answer_1';
     opt1.setAttribute("type", "radio");
-    var a1_text = document.createTextNode(question.answer_1[1]);
-    a1.appendChild(a1_text);
+    opt1.setAttribute("name", "answer_for" + question.question);
+    var a1_label = utils.createElement('label','',question.answer_1[1],a1);
+    a1_label.setAttribute('for', opt1.id);
     answers.appendChild(a1);
 
     var a2 = document.createElement('p');
     var opt2 = utils.createElement('input', '', '', a2);
     opt2.setAttribute("type", "radio");
-    var a2_text = document.createTextNode(question.answer_2[1]);
-    a2.appendChild(a2_text);
+    opt2.setAttribute("name", "answer_for" + question.question);
+    var a2_label = utils.createElement('label','',question.answer_2[1],a2);
+    a2_label.setAttribute('for', opt2.id);
     answers.appendChild(a2);
 
     var a3 = document.createElement('p');
     var opt3 = utils.createElement('input', '', '', a3);
     opt3.setAttribute("type", "radio");
-    var a3_text = document.createTextNode(question.answer_3[1]);
-    a3.appendChild(a3_text);
+    opt3.setAttribute("name", "answer_for" + question.question);
+    var a3_label = utils.createElement('label','',question.answer_3[1],a3);
+    a3_label.setAttribute('for', opt3.id);
     answers.appendChild(a3);
 
     var a4 = document.createElement('p');
     var opt4 = utils.createElement('input', '', '', a4);
     opt4.setAttribute("type", "radio");
-    var a4_text = document.createTextNode(question.answer_4[1]);
-    a4.appendChild(a4_text);
+    opt4.setAttribute("name", "answer_for" + question.question);
+    var a4_label = utils.createElement('label','',question.answer_1[1],a4);
+    a4_label.setAttribute('for', opt4.id);
     answers.appendChild(a4);
-
-//    utils.createElement('p','',question.answer_2[1], answers);
-//    var opt2 = utils.createElement('input', '', '', answers);
-//    opt2.setAttribute("type", "radio");
-//
-//    utils.createElement('p','',question.answer_3[1], answers);
-//    var opt3 = utils.createElement('input', '', '', answers);
-//    opt3.setAttribute("type", "radio");
-//
-//    utils.createElement('p','',question.answer_4[1], answers);
-//    var opt4 = utils.createElement('input', '', '', answers);
-//    opt4.setAttribute("type", "radio");
 
     container.appendChild(answers);
     return container;
@@ -71,6 +73,8 @@ function createQuestion(question){
 
 
 }
+
+//need a function for grading test :todo
 
 function getAjax(callback){
     var xhr = new XMLHttpRequest();
@@ -217,7 +221,7 @@ function Router(){
 
                 // hide all of the other views
                 self.views[view].element.style.display = 'none';
-                self.other_views['/test_view'].element.style.display = 'none';
+                self.other_views['/test_view'].element.style.display = 'block';
 
 
             }

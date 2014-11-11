@@ -94,22 +94,35 @@ footer {
     font-weight: 600;
 }
 
-div.question {
-    border: 1px solid black;
+div#test_view {
+    position: relative;
+    padding-bottom: 40px;
+    overflow: visible;
+}
+
+div#test_view > div.test_title {
+    font-size: x-large;
+    margin: 0.5em;
+}
+
+#test_view > div.question {
+    border: 1px dotted black;
 }
 div.question > p {
     font-style: italic;
     font-weight: 400;
 }
 
-div#test_view {
-    position: relative;
+#test_view > div.toolbox {
+    width: 95%;
+    position: absolute;
+    text-align: right;
+    bottom: 5px;
 }
 
-div.toolbox {
-    bottom: 0.5px;
-    right: 0;
-    position: absolute;
+#test_view > div.toolbox > button {
+
+    text-align: right;
 }
 
 div#test_template {
@@ -135,4 +148,24 @@ div#test_template > div.question > span {
 div#test_template > div.question > span.correct {
     background-color: yellow;
     display: block;
+}
+
+button {
+    display: inline-block;
+    padding: 3px 4px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
