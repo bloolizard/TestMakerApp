@@ -92,10 +92,8 @@ function createTest(callback){
             callback(xhr.responseText);
         }
     });
-    var test = {test_name: document.getElementsByName('test_name')[0].value};
-    if (test.test_name != ''){
-        xhr.send(JSON.stringify(test));
-    }
+    xhr.send(JSON.stringify(currentTest));
+
 
 }
 
@@ -308,28 +306,9 @@ function Router(){
 
 var router = new Router();
 
-//get question object from form
-function getQuestionObject(){
-    var form = document.forms.create_question_form;
-    return {
-        question: form.question.value,
-        answer_1: [form.answers[0].checked, form.opt0.value],
-        answer_2: [form.answers[1].checked, form.opt1.value],
-        answer_3: [form.answers[2].checked, form.opt2.value],
-        answer_4: [form.answers[3].checked, form.opt3.value]
-    }
-}
+function setTestTemplateView(){
 
-//adding a question
-document.getElementById('add_question').addEventListener('click', function() {
-    //adds new questions below container
-    console.log('Add Questions');
 
-    //save the the question in an object
-    currentTest.questions.push(getQuestionObject());
-    console.log(currentTest);
-
-    document.forms.create_question_form.reset();
 
     //draw questions in new container below
     var test_template = document.getElementById('test_template');
@@ -353,12 +332,57 @@ document.getElementById('add_question').addEventListener('click', function() {
 
     });
 
+    test_template.style.display = 'block';
+}
 
-//    updateTest(getQuestionObject(), function(){
-//        //clear form on successful send
-//        document.forms.create_question_form.reset();
-//
-//    });
+//get question object from form
+function getQuestionObject(){
+    var form = document.forms.create_question_form;
+    return {
+        question: form.question.value,
+        answer_1: [form.answers[0].checked, form.opt0.value],
+        answer_2: [form.answers[1].checked, form.opt1.value],
+        answer_3: [form.answers[2].checked, form.opt2.value],
+        answer_4: [form.answers[3].checked, form.opt3.value]
+    }
+}
+
+//adding a question
+document.getElementById('add_question').addEventListener('click', function() {
+    //adds new questions below container
+    console.log('Add Questions');
+
+    //save the the question in an object
+    currentTest.questions.push(getQuestionObject());
+    console.log(currentTest);
+
+    document.forms.create_question_form.reset();
+
+    setTestTemplateView();
+});
+
+// when the test is finished press this
+document.getElementById('finish_test_template').addEventListener('click', function(){
+    console.log('Thank you for making a test');
+
+    //hide the test view if its showing
+    document.getElementById('test_template').style.display = 'none';
+
+    //send the test object over
+    createTest(function(){
+        //clear currentTest Object
+        currentTest = {};
+
+        //alert user of complete Test
+        alert('Thank you for your test =)');
+
+
+        //redirect user to My Tests
+        router.show('/my_test', 'views');
+        router.views['/my_test'].init.forEach(function(fn){
+            fn();
+        });
+    });
 });
 
 router.views['/new_test'].unload.push(function(){

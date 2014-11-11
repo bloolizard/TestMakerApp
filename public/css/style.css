@@ -114,6 +114,7 @@ div.toolbox {
 
 div#test_template {
     text-align: center;
+    display: none;
 }
 
 
