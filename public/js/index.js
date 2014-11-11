@@ -8,6 +8,12 @@ var utils = {
     }
 };
 
+//holds the currentTest
+var currentTest = {
+    test_name: "",
+    questions: []
+};
+
 function createAnswer(answer){
 //    var p = document.createElement('p');
 }
@@ -274,19 +280,27 @@ function Router(){
     self.views['/welcome'].element.style.display = 'block';
 
     self.other_views['/create_question'].trigger[0].addEventListener('click',function(e){
-        createTest(function(data){
-            self.show(self.other_views['/create_question'].trigger[0].dataset.href, 'other_views');
+          // take you to create question view
+        self.show(self.other_views['/create_question'].trigger[0].dataset.href, 'other_views');
 
-            var test_data = JSON.parse(data);
-            console.log(test_data._id);
+        //save the test name
+        currentTest.test_name = document.getElementsByName('test_name')[0].value;
+        // disable test button
+        (document.getElementById('create_question_trigger')).disabled = true;
 
-            //lock the create test btn
-            (document.getElementById('create_question_trigger')).disabled = true;
-            (document.getElementsByName('test_name')[0]).disabled = true;
-
-            //append id as data attribute on container
-            (document.getElementById('test_name')).setAttribute('data-id', test_data._id);
-        });
+//        createTest(function(data){
+//            self.show(self.other_views['/create_question'].trigger[0].dataset.href, 'other_views');
+//
+//            var test_data = JSON.parse(data);
+//            console.log(test_data._id);
+//
+//            //lock the create test btn
+//            (document.getElementById('create_question_trigger')).disabled = true;
+//            (document.getElementsByName('test_name')[0]).disabled = true;
+//
+//            //append id as data attribute on container
+//            (document.getElementById('test_name')).setAttribute('data-id', test_data._id);
+//        });
     });
 
 
@@ -308,11 +322,43 @@ function getQuestionObject(){
 
 //adding a question
 document.getElementById('add_question').addEventListener('click', function() {
-    updateTest(getQuestionObject(), function(){
-        //clear form on successful send
-        document.forms.create_question_form.reset();
+    //adds new questions below container
+    console.log('Add Questions');
+
+    //save the the question in an object
+    currentTest.questions.push(getQuestionObject());
+    console.log(currentTest);
+
+    document.forms.create_question_form.reset();
+
+    //draw questions in new container below
+    var test_template = document.getElementById('test_template');
+
+    //clear out the before redraw
+    test_template.innerHTML = '';
+
+
+    utils.createElement('h1', '', currentTest.test_name, test_template);
+
+
+    //for each question draw a question box;
+    currentTest.questions.reverse().forEach(function(elem){
+        console.log(elem);
+        var question_div = utils.createElement('div', 'question','', test_template);
+        utils.createElement('h4', '',elem.question, question_div);
+        utils.createElement('span', elem.answer_1[0] ? 'correct' : '', elem.answer_1[1], question_div);
+        utils.createElement('span', elem.answer_2[0] ? 'correct' : '', elem.answer_2[1], question_div);
+        utils.createElement('span', elem.answer_3[0] ? 'correct' : '', elem.answer_3[1], question_div);
+        utils.createElement('span', elem.answer_4[0] ? 'correct' : '', elem.answer_4[1], question_div);
 
     });
+
+
+//    updateTest(getQuestionObject(), function(){
+//        //clear form on successful send
+//        document.forms.create_question_form.reset();
+//
+//    });
 });
 
 router.views['/new_test'].unload.push(function(){

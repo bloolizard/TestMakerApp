@@ -68,7 +68,9 @@ li.right {
 }
 
 div#welcome_container, div#new_test_container,
-div#my_test_container, div#create_question_container, div#test_view {
+div#my_test_container, div#create_question_container, div#test_view,
+div#test_template
+{
     margin: 3em 1em;
     padding: 0.5em;
 }
@@ -108,4 +110,28 @@ div.toolbox {
     bottom: 0.5px;
     right: 0;
     position: absolute;
+}
+
+div#test_template {
+    text-align: center;
+}
+
+
+
+div#test_template > div.question {
+    border: #eee dotted;
+}
+
+div#test_template > div.question > h4 {
+    font-style: italic;
+}
+
+div#test_template > div.question > span {
+    margin: 0.5em;
+    display: block;
+}
+
+div#test_template > div.question > span.correct {
+    background-color: yellow;
+    display: block;
 }
