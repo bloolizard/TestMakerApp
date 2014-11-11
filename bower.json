@@ -1,0 +1,19 @@
+{
+  "name": "TestApp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bloolizard/TestMakerApp",
+  "authors": [
+    "Edwin Villanueva <edwincv0@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies":{
+      "angular": "~1.3.1"
+  }
+}
