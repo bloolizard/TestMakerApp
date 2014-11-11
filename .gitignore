@@ -2,3 +2,4 @@
 .idea
 conf/
 bower_components/
+.DS_Store

@@ -1,8 +1,20 @@
+html, body {
+    height: 100%;
+}
+
 body {
   padding: 0;
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #A2A298;
+}
+
+.wrapper {
+    min-height: 90%;
+}
+
+.container {
+    margin-bottom: 50px;
 }
 
 a {
@@ -69,14 +81,10 @@ div#my_test_container, div#create_question_container, div#test_view {
     text-align: center;
 }
 
-section.container {
-    height: 100%;
-}
 
 footer {
-    position: absolute;
+    margin-top: -20px;
     width: 100%;
-    bottom: 0;
     text-align: center;
 }
 

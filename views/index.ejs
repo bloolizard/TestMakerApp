@@ -15,95 +15,100 @@
           </ul>
       </nav>
   </header>
-  <section class="container">
-      <div id="welcome_container" class="well">
-          <div>
-              <h1>Let's Make a Test</h1>
-              <button data-href="/my_test" id="my_test_btn">My Tests</button>
-              <button data-href="/new_test" id="new_test_btn">Start a New Test</button>
-          </div>
-
-
-
-      </div>
-
-      <div id="new_test_container" class="well">
-          <div>
-              <div id="test_name" class="test_name">
-                  Enter a Test Name:
-                  <p>
-                      <input name="test_name" type="text" placeholder="Test Name"/>
-                        <button data-href="/create_question" id="create_question_trigger">Create Test</button>
-                  </p>
+  <div class="wrapper">
+  <div class="container">
+      <section>
+          <div id="welcome_container" class="well">
+              <div>
+                  <h1>Let's Make a Test</h1>
+                  <button data-href="/my_test" id="my_test_btn">My Tests</button>
+                  <button data-href="/new_test" id="new_test_btn">Start a New Test</button>
               </div>
 
 
 
           </div>
 
-      </div>
+          <div id="new_test_container" class="well">
+              <div>
+                  <div id="test_name" class="test_name">
+                      Enter a Test Name:
+                      <p>
+                          <input name="test_name" type="text" placeholder="Test Name"/>
+                          <button data-href="/create_question" id="create_question_trigger">Create Test</button>
+                      </p>
+                  </div>
 
-      <div id="my_test_container" class="well">
-          <div>
-              <h3>My Tests</h3>
-              <div id="my_tests">
 
+
+              </div>
+
+          </div>
+
+          <div id="my_test_container" class="well">
+              <div>
+                  <h3>My Tests</h3>
+                  <div id="my_tests">
+
+                  </div>
+              </div>
+
+          </div>
+
+          <div id="create_question_container" class="well">
+              <form name="create_question_form">
+
+                  <div class="question_box">
+                      Enter a Question:
+                      <p>
+                          <input name="question" type="text" placeholder="Question"/>
+                      </p>
+                  </div>
+
+                  Answers: (Write Answers: Select Correct Answer)
+                  <div class="answer_box">
+                      <p>
+                          <input name="answers" id="answer_1" type="radio"/>
+                          <input name="opt0" type="text" placeholder="Answer 1"/>
+                      </p>
+                      <p>
+                          <input name="answers" id="answer_2" type="radio"/>
+                          <input name="opt1" type="text" placeholder="Answer 2"/>
+                      </p>
+                      <p>
+                          <input name="answers" id="answer_3" type="radio"/>
+                          <input name="opt2" type="text" placeholder="Answer 3"/>
+                      </p>
+                      <p>
+                          <input name="answers" id="answer_4" type="radio"/>
+                          <input name="opt3" type="text" placeholder="Answer 4"/>
+                      </p>
+                  </div>
+              </form>
+
+              <div class="answer_toolbox">
+                  <button disabled>Previous</button>
+                  <button disabled>Next</button>
+                  <button id="add_question">Add Question</button>
+                  <button>Finish</button>
+              </div>
+
+
+          </div>
+
+          <div id="test_view" class="well">
+              <div class="test_title"></div>
+
+              <div class="answers"></div>
+              <div class="toolbox">
+                  <button id="submit_test_btn">Submit</button>
               </div>
           </div>
 
-      </div>
+      </section>
 
-      <div id="create_question_container" class="well">
-          <form name="create_question_form">
-
-          <div class="question_box">
-              Enter a Question:
-              <p>
-                  <input name="question" type="text" placeholder="Question"/>
-              </p>
-          </div>
-
-          Answers: (Write Answers: Select Correct Answer)
-          <div class="answer_box">
-              <p>
-                  <input name="answers" id="answer_1" type="radio"/>
-                  <input name="opt0" type="text" placeholder="Answer 1"/>
-              </p>
-              <p>
-                  <input name="answers" id="answer_2" type="radio"/>
-                  <input name="opt1" type="text" placeholder="Answer 2"/>
-              </p>
-              <p>
-                  <input name="answers" id="answer_3" type="radio"/>
-                  <input name="opt2" type="text" placeholder="Answer 3"/>
-              </p>
-              <p>
-                  <input name="answers" id="answer_4" type="radio"/>
-                  <input name="opt3" type="text" placeholder="Answer 4"/>
-              </p>
-          </div>
-          </form>
-
-          <div class="answer_toolbox">
-              <button disabled>Previous</button>
-              <button disabled>Next</button>
-              <button id="add_question">Add Question</button>
-              <button>Finish</button>
-          </div>
-
-
-      </div>
-
-      <div id="test_view" class="well">
-          <div class="test_title"></div>
-
-          <div class="answers"></div>
-          <div class="toolbox">
-              <button id="submit_test_btn">Submit</button>
-          </div>
-      </div>
-
-  </section>
+  </div>
+  </div>
     <footer>&copy; Edwin Villanueva</footer>
   <script src="/js/index.js"></script>
   </body>
